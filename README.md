@@ -49,30 +49,7 @@ If no record is found for an entry, the script logs:
 <entry> -> No record present
 ```
 
-## Script
-
-```bash
-#!/bin/bash
-
-is_ip() {
-    [[ "$1" =~ ^[0-9]+\.[0-9]+\.[0-9]+\.[0-9]+$ ]]
-}
-
-while read -r i || [ -n "$i" ]
-do
-    if is_ip "$i"
-    then
-        output=$(dig -x "$i" +short)
-    else
-        output=$(dig "$i" +short)
-    fi
-
-    if [ -n "$output" ]
-    then
-        echo "$i -> $output" >> logs.txt
-    else
-        echo "$i -> No record present" >> logs.txt
-    fi
+   fi
 done < dns.txt
 ```
 
