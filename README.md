@@ -47,12 +47,8 @@ github.com -> 140.82.121.3
 If no record is found for an entry, the script logs:
 ```
 <entry> -> No record present
-```
 
-   fi
-done < dns.txt
 ```
-
 ## License
 
 MIT
