@@ -1,10 +1,21 @@
 #!/bin/bash
 
+
+is_ip(){
+    [[ $1 =~ ^[0-9]+\.[0-9]+\.[0-9]+\.[0-9]$ ]]
+}
+
 while read -r i || [ -n "$i" ]
-do
-output=$(nslookup $i | grep "name =" | sed 's/\.$//' | awk '{print $4}')
-#Alternate output=$(dig $i +short) 
-#Alternate for reverse lookup output=$(dig -x $i +short)
+do  
+    if is_ip "$i"
+    then
+        output=$(dig -x $i +short)   # this is REVERSE lookup, but you labeled it "forward"
+    
+    else
+        output=$(dig $i +short)      # this is FORWARD lookup, but you labeled it "Reverse lookup"
+    fi
+
+    #To update status in log file
     if [ -n "$output" ]
     then 
         echo $i "->" $output >> logs.txt
@@ -12,4 +23,7 @@ output=$(nslookup $i | grep "name =" | sed 's/\.$//' | awk '{print $4}')
         echo $i "-> No record present" >> logs.txt
     fi
 done < dns.txt
+
+
+
 
