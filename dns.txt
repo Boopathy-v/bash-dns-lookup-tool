@@ -1,3 +1,12 @@
 8.8.8.8
-8.8.8.2
+8.8.4.4
+1.1.1.1
+1.0.0.1
+9.9.9.9
+208.67.222.222
 google.com
+github.com
+cloudflare.com
+amazon.com
+microsoft.com
+wikipedia.org
